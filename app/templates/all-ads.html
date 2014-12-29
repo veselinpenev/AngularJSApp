@@ -80,13 +80,16 @@
                    </div>
                </li>
            </ul>
+           <div data-pagination="" data-num-pages="numPages()"
+                data-current-page="currentPage" data-max-size="maxSize"
+                data-boundary-links="true"></div>
        </div>
        <div class="col-md-3">
            <div class="panel panel-primary">
                <div class="panel-heading">
                    <h3 class="panel-title">Categories</h3>
                </div>
-               <div class="panel-body list-group-item" ng-repeat="category in allCategories">
+               <div class="panel-body list-group-item"  ng-repeat="category in allCategories">
                    {{category.name}}
                </div>
            </div>

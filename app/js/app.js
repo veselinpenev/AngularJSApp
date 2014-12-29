@@ -1,4 +1,4 @@
-var adsModule = angular.module('adsModule', ['ngRoute'])
+var adsModule = angular.module('adsModule', ['ngRoute', 'ui.bootstrap'])
 	.config(function ($routeProvider) {
 		$routeProvider.when('/', {
 			templateUrl: 'templates/all-ads.html'

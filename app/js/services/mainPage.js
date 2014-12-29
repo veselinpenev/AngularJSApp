@@ -1,7 +1,14 @@
 adsModule.factory('mainData', function ($http, $log) {
     return {
-        getAllAds : function (success) {
-            $http({method: 'GET', url:'http://localhost:1337/api/ads?pagesize=10&startpage=1'})
+        getAllAds : function (success, page, categoryId, townId) {
+            var url = 'http://localhost:1337/api/ads?pagesize=10&startpage=' + page;
+            if(categoryId != -1){
+                url+='&CategoryId='+categoryId;
+            }
+            if(townId != -1){
+                url+='&TownId='+townId;
+            }
+            $http({method: 'GET', url: url})
                 .success(function (data, status, headers, config) {
                     success(data)
                 })
