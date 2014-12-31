@@ -6,7 +6,11 @@ adsModule.controller('LoginController', function ($scope, $location, mainData) {
             localStorage.setItem('access_token', data.access_token);
             localStorage.setItem('isAdmin', data.isAdmin);
             localStorage.setItem('username', data.username);
-            $location.path('/user/home');
+            if(data.isAdim){
+                $location.path('/admin/home');
+            } else {
+                $location.path('/user/home');
+            }
             noty({
                     text: "Successfully login!",
                     type: 'success',

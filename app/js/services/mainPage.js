@@ -1,7 +1,9 @@
 adsModule.factory('mainData', function ($http, $log) {
+    var baseUrl = 'http://localhost:1337/api/';
+
     return {
         getAllAds : function (success, page, categoryId, townId) {
-            var url = 'http://localhost:1337/api/ads?pagesize=10&startpage=' + page;
+            var url = baseUrl + 'ads?pagesize=10&startpage=' + page;
             if(categoryId != -1){
                 url+='&CategoryId='+categoryId;
             }
@@ -17,7 +19,7 @@ adsModule.factory('mainData', function ($http, $log) {
                 })
         },
         getAllTowns : function (success) {
-            $http({method: 'GET', url:'http://localhost:1337/api/towns'})
+            $http({method: 'GET', url: baseUrl + 'towns'})
                 .success(function (data, status, headers, config) {
                     success(data)
                 })
@@ -26,7 +28,7 @@ adsModule.factory('mainData', function ($http, $log) {
                 })
         },
         getAllCategories : function (success) {
-            $http({method: 'GET', url:'http://localhost:1337/api/categories'})
+            $http({method: 'GET', url: baseUrl + 'categories'})
                 .success(function (data, status, headers, config) {
                     success(data)
                 })
@@ -37,7 +39,7 @@ adsModule.factory('mainData', function ($http, $log) {
         login : function (success, username, password) {
             $http({
                 method: 'POST',
-                url:'http://localhost:1337/api/user/login',
+                url: baseUrl + 'user/login',
                 data: {username: username, password: password}
             }).success(function (data, status, headers, config) {
                 success(data)
@@ -61,7 +63,7 @@ adsModule.factory('mainData', function ($http, $log) {
 
             $http({
                 method: 'POST',
-                url:'http://localhost:1337/api/user/register',
+                url: baseUrl + 'user/register',
                 data: data
             }).success(function (data, status, headers, config) {
                 success(data)

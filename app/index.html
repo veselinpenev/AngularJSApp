@@ -5,6 +5,8 @@
 	<link rel="stylesheet" type="text/css" href="css/app.css">
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+
+	<link rel="stylesheet" type="text/css" href="css/app.css">
 </head>
 
 <body ng-app="adsModule" ng-controller="MainController">
@@ -19,14 +21,15 @@
 						<span class="icon-bar"></span>
 					</button>
 				</div>
-				<div class="navbar-collapse collapse" id="navbar-main">
-
+				<div id="logout">
 					<ul class="nav navbar-nav navbar-right">
-						<li><a href="#/">All ads</a></li>
-						<li><a href="#/login">Login</a></li>
-						<li><a href="#/register">Register</a></li>
+						<li><span id="username" class="btn btn-primary disabled"></span></li>
+						<li><a href="#/logout">Logout</a></li>
 					</ul>
-
+				</div>
+				<div class="navbar-collapse collapse" id="navbar-main">
+					<ul id="menu" class="nav navbar-nav navbar-right">
+					</ul>
 				</div>
 			</div>
 		</div>
@@ -35,6 +38,12 @@
 	<div ng-view class="container">
 
 	</div>
+
+	<footer>
+		<div class="panel-footer">
+			<p class="text-center">&copy; 2014 by Software University Foundation, No Rights Reserved</p>
+		</div>
+	</footer>
 
 	<script type="text/javascript" src="lib/angular/angular.js"></script>
 	<script type="text/javascript" src="lib/angular/angular-route.min.js"></script>
@@ -46,6 +55,10 @@
 	<script type="text/javascript" src="js/controllers/AllAdsController.js"></script>
 	<script type="text/javascript" src="js/controllers/LoginController.js"></script>
 	<script type="text/javascript" src="js/controllers/RegisterController.js"></script>
+	<script type="text/javascript" src="js/controllers/UserHomeController.js"></script>
+	<script type="text/javascript" src="js/controllers/PublishNewAdController.js"></script>
+	<script type="text/javascript" src="js/controllers/LogoutController.js"></script>
 	<script type="text/javascript" src="js/services/mainPage.js"></script>
+	<script type="text/javascript" src="js/services/userPage.js"></script>
 </body>
 </html>
