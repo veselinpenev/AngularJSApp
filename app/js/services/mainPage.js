@@ -13,7 +13,7 @@ adsModule.factory('mainData', function ($http, $log) {
                     success(data)
                 })
                 .error(function (data, status, headers, config) {
-                    $log.warn(data);
+                    showErrorMessage(data.error_description);
                 })
         },
         getAllTowns : function (success) {
@@ -22,7 +22,7 @@ adsModule.factory('mainData', function ($http, $log) {
                     success(data)
                 })
                 .error(function (data, status, headers, config) {
-                    $log.warn(data);
+                    showErrorMessage(data.error_description);
                 })
         },
         getAllCategories : function (success) {
@@ -31,8 +31,54 @@ adsModule.factory('mainData', function ($http, $log) {
                     success(data)
                 })
                 .error(function (data, status, headers, config) {
-                    $log.warn(data);
+                    showErrorMessage(data.error_description);
+                })
+        },
+        login : function (success, username, password) {
+            $http({
+                method: 'POST',
+                url:'http://localhost:1337/api/user/login',
+                data: {username: username, password: password}
+            }).success(function (data, status, headers, config) {
+                success(data)
+            })
+                .error(function (data, status, headers, config) {
+                    showErrorMessage(data.error_description);
+                })
+        },
+        register : function (success, username, password, confirmPassword, name, email, phone, townId ) {
+            var data = {
+                username: username,
+                password: password,
+                confirmPassword: confirmPassword,
+                name: name,
+                email: email,
+                phone: phone
+            }
+            if(townId != undefined){
+                data.townId = townId;
+            }
+
+            $http({
+                method: 'POST',
+                url:'http://localhost:1337/api/user/register',
+                data: data
+            }).success(function (data, status, headers, config) {
+                success(data)
+            })
+                .error(function (data, status, headers, config) {
+                    showErrorMessage('Register invalid');
                 })
         }
+    }
+
+    function showErrorMessage(msg) {
+        noty({
+                text: msg,
+                type: 'error',
+                layout: 'topCenter',
+                closeWith: ["button"],
+                timeout: 3000}
+        );
     }
 })
