@@ -1,5 +1,6 @@
 adsModule.controller('LoginController', function ($scope, $location, mainData) {
     $('#changeHeader').text('Login');
+    $('#menu').load('/templates/defaultMenu.html');
 
     $scope.loginUser = function (login, form){
         mainData.login(function (data) {

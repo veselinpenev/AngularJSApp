@@ -1,5 +1,6 @@
 adsModule.controller('RegisterController', function ($scope, $location, mainData) {
     $('#changeHeader').text('Register');
+    $('#menu').load('/templates/defaultMenu.html');
 
     $scope.registerUser = function (register, form){
         if(register.password != register.confirmPassword){
