@@ -28,10 +28,10 @@ adsModule.controller('PublishNewAd', function ($scope, $location, userPage) {
         if($scope.imageUrl != null) {
             ad.imageDataUrl = $scope.imageUrl;
         }
-        console.log(ad);
         userPage.create(ad)
             .$promise
             .then(function (data) {
+                $location.path('/user/home');
                 noty({
                         text: "Successfully created",
                         type: 'success',
@@ -39,11 +39,15 @@ adsModule.controller('PublishNewAd', function ($scope, $location, userPage) {
                         closeWith: ["button"],
                         timeout: 3000}
                 );
-                $location.path('/user/home');
-                console.log(data);
             },
             function (error) {
-                $log.error(error);
+                noty({
+                        text: "Please try again",
+                        type: 'error',
+                        layout: 'topCenter',
+                        closeWith: ["button"],
+                        timeout: 3000}
+                );
             });
     }
 });
