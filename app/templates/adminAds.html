@@ -1,0 +1,177 @@
+<div class="jumbotron">
+    <div class="row">
+        <div class="col-md-9">
+            <ul id="allAds">
+                <li ng-repeat="ad in allAdminAds.ads">
+                    <div class="container well">
+                        <div class="row">
+                            <div class="col-md-7">
+                                <h3 class="pull-left">
+                                    {{ad.title}}
+                                </h3>
+                            </div>
+
+                            <div class="col-md-5">
+                               <span class="pull-right">
+                                   {{ad.date | date:'d-MMM-yyyy'}}
+                               </span>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <img class="picture" src="" ng-src="{{ad.imageDataUrl || 'http://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg'}}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="panel panel-default">
+                                            <div class="panel-body">
+                                                {{ad.text}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <div>
+                                            <h5>Username: </h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <div class="well well-sm">
+                                            {{ad.ownerUsername}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <div>
+                                            <h5>Name: </h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <div class="well well-sm">
+                                            {{ad.ownerName}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <div>
+                                            <h5>Email: </h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <div class="well well-sm">
+                                            {{ad.ownerEmail}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <div>
+                                            <h5>Phone: </h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <div class="well well-sm">
+                                            {{ad.ownerPhone}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <div>
+                                            <h5>Category: </h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <div class="well well-sm">
+                                            {{ad.categoryName}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <div>
+                                            <h5>Town: </h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <div class="well well-sm">
+                                            {{ad.townName}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <div>
+                                            <h5>Status: </h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <div class="well well-sm">
+                                            {{ad.status}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row adminAdsButton">
+                            <a href ng-click="adminApproveAd(ad.id)" class="btn btn-success">Approve</a>
+                            <a href ng-click="adminRejectAd(ad.id)" class="btn btn-info">Reject</a>
+                            <a href ng-click="go('/admin/ads/edit/' + ad.id)" class="btn btn-warning">Edit</a>
+                            <a href ng-click="go('/admin/ads/delete/' + ad.id)" class="btn btn-danger">Delete</a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="col-md-3">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Categories</h3>
+                </div>
+                <div class="panel-body list-group-item" ng-class="{active : categoryId == -1}" ng-click="clickCategories(-1)">
+                    All
+                </div>
+                <div class="panel-body list-group-item" ng-repeat="category in allCategories" ng-class="{active : categoryId == category.id}" ng-click="clickCategories(category.id)">
+                    {{category.name}}
+                </div>
+            </div>
+
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Towns</h3>
+                </div>
+                <div class="panel-body list-group-item" ng-click="clickTowns(-1)" ng-class="{active : townId == -1}" >
+                    All
+                </div>
+                <div class="panel-body list-group-item" ng-repeat="town in allTowns" ng-class="{active : townId == town.id}" ng-click="clickTowns(town.id)">
+                    {{town.name}}
+                </div>
+            </div>
+
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Ads</h3>
+                </div>
+                <div class="panel-body list-group-item" ng-class="{active : statusId == -1}" ng-click="clickStatus(-1)">
+                    All
+                </div>
+                <div class="panel-body list-group-item" ng-repeat="status in allStatus" ng-class="{active : statusId == status.serverName}" ng-click="clickStatus(status.serverName)">
+                    {{status.fullName}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

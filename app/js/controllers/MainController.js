@@ -11,6 +11,25 @@ adsModule.controller('MainController', function ($scope, $location, mainData) {
     $scope.active = 'active';
     $scope.showLogout = false;
 
+    $scope.allStatus={
+        1:{
+            fullName: 'Inactive',
+            serverName: 'Inactive'
+        },
+        2:{
+            fullName: 'Waiting Approval',
+            serverName: 'WaitingApproval'
+        },
+        3:{
+            fullName: 'Published',
+            serverName: 'Published'
+        },
+        4:{
+            fullName: 'Rejected',
+            serverName: 'Rejected'
+        }
+    };
+
     updateData();
     mainData.getAllTowns(function (resp) {
         $scope.allTowns = resp;

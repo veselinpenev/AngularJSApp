@@ -8,7 +8,7 @@ adsModule.controller('LoginController', function ($scope, $location, mainData) {
             localStorage.setItem('isAdmin', data.isAdmin);
             localStorage.setItem('username', data.username);
             if(data.isAdmin){
-                $location.path('/admin/home');
+                $location.path('/admin/ads');
             } else {
                 $location.path('/user/home');
             }

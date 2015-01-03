@@ -40,5 +40,17 @@ var adsModule = angular.module('adsModule', ['ngRoute','ngResource'])
 			templateUrl: 'templates/logout.html',
 			controller: 'LogoutController'
 		});
+		$routeProvider.when('/admin/ads', {
+			templateUrl: 'templates/adminAds.html',
+			controller: 'AdminsAdsController'
+		});
+		$routeProvider.when('/admin/ads/edit/:id', {
+			templateUrl: 'templates/adminEditAd.html',
+			controller: 'AdminsEditAdController'
+		});
+		$routeProvider.when('/admin/ads/delete/:id', {
+			templateUrl: 'templates/editAds.html',
+			controller: 'EditAdsController'
+		});
 		$routeProvider.otherwise({redirectTo: '/'})
 	});
