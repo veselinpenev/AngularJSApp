@@ -95,7 +95,63 @@ adsModule.factory('userPage', function ($resource, $http) {
 			success(data)
 		})
 			.error(function (data, status, headers, config) {
-				showErrorMessage(data.error_description);
+				showErrorMessage('Please try again');
+			})
+	}
+
+	function changePassword(success, password) {
+		var data = {
+			oldPassword: password.oldPassword,
+			newPassword: password.newPassword,
+			confirmPassword: password.confirmPassword
+		}
+		var url = baseUrl + 'changePassword';
+		$http({
+			method: 'PUT',
+			url: url,
+			data: data,
+			headers: {
+				"Authorization": "Bearer " + access_token
+			}
+		}).success(function (data, status, headers, config) {
+			success(data)
+		})
+			.error(function (data, status, headers, config) {
+				showErrorMessage("Please check your password and try again");
+			})
+	}
+
+	function getUserProfile(success) {
+		var url = baseUrl + 'profile';
+		$http({
+			method: 'GET',
+			url: url,
+			headers: {
+				"Authorization": "Bearer " + access_token
+			}
+		}).success(function (data, status, headers, config) {
+			success(data)
+		})
+			.error(function (data, status, headers, config) {
+				showErrorMessage("Please check your password and try again");
+			})
+	}
+
+	function updateUserProfile(success, profile) {
+
+		var url = baseUrl + 'profile';
+		$http({
+			method: 'PUT',
+			url: url,
+			data: profile,
+			headers: {
+				"Authorization": "Bearer " + access_token
+			}
+		}).success(function (data, status, headers, config) {
+			success(data)
+		})
+			.error(function (data, status, headers, config) {
+				showErrorMessage("Please check your password and try again");
 			})
 	}
 
@@ -119,5 +175,8 @@ adsModule.factory('userPage', function ($resource, $http) {
 		getAllUserAds: getAllUserAds,
 		deactivateAds: deactivateAds,
 		publishAgain: publishAgain,
+		changePassword: changePassword,
+		getUserProfile: getUserProfile,
+		updateUserProfile: updateUserProfile
 	}
 });

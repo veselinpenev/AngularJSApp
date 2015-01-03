@@ -33,8 +33,8 @@ var adsModule = angular.module('adsModule', ['ngRoute','ngResource'])
 			controller: 'EditAdsController'
 		});
 		$routeProvider.when('/user/profile', {
-			//templateUrl: 'templates/publishNewAd.html',
-			//controller: 'PublishNewAd'
+			templateUrl: 'templates/editUser.html',
+			controller: 'EditUserController'
 		});
 		$routeProvider.when('/logout', {
 			templateUrl: 'templates/logout.html',
