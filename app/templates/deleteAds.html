@@ -1,0 +1,77 @@
+<div class="jumbotron">
+    <div class="row">
+        <div >
+            <ul id="allAds">
+                <li>
+                    <div class="container well">
+                        <div class="row">
+                            <div class="col-md-7">
+                                <h3 class="pull-left">
+                                    {{deleteAd.title}}
+                                </h3>
+                            </div>
+
+                            <div class="col-md-5">
+                               <span class="pull-right">
+                                   {{deleteAd.date | date:'d-MMM-yyyy'}}
+                               </span>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <img class="picture" src="" ng-src="{{deleteAd.imageDataUrl || 'http://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg'}}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="panel panel-default">
+                                            <div class="panel-body">
+                                                {{deleteAd.text}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div>
+                                            <h5>Category: </h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <div class="well well-sm">
+                                            {{deleteAd.categoryName}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div>
+                                            <h5>Town: </h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <div class="well well-sm">
+                                            {{deleteAd.townName}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row confirmButton">
+                            <a href ng-click="confirmDeleteAd(deleteAd.id)" class="btn btn-primary">Delete</a>
+                            <a href="#/user/ads" class="btn btn-default">Cancel</a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

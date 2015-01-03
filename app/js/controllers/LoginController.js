@@ -7,7 +7,7 @@ adsModule.controller('LoginController', function ($scope, $location, mainData) {
             localStorage.setItem('access_token', data.access_token);
             localStorage.setItem('isAdmin', data.isAdmin);
             localStorage.setItem('username', data.username);
-            if(data.isAdim){
+            if(data.isAdmin){
                 $location.path('/admin/home');
             } else {
                 $location.path('/user/home');

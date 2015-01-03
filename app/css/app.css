@@ -10,3 +10,16 @@
 #logout{
     display: none;
 }
+.hideButton{
+    display: none;
+}
+.status{
+    margin-top: 60px;
+}
+.button{
+    margin-left: 40px;
+    margin-top: 5px;
+}
+.confirmButton{
+    margin-left: 40%;
+}

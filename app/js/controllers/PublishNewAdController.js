@@ -10,7 +10,6 @@ adsModule.controller('PublishNewAd', function ($scope, $location, userPage) {
     $('#logout').addClass('navbar-collapse collapse').show();
 
     $scope.fileSelected = function (fileInputField) {
-        console.log(fileInputField.files);
         var file = fileInputField.files[0];
         if(file.type.match(/image\/.*/)){
             var reader = new FileReader();

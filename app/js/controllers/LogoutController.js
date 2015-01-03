@@ -21,6 +21,6 @@ adsModule.controller('LogoutController', function ($scope, $location, userPage) 
                     closeWith: ["button"],
                     timeout: 3000}
             );
-        }, localStorage.getItem('access_token'))
+        })
     }
 });

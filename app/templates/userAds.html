@@ -5,76 +5,94 @@
                 <li ng-repeat="ad in allUserAds.ads">
                     <div class="container well">
                         <div class="row">
-                            <div class="col-md-7">
-                                <h3 class="pull-left">
-                                    {{ad.title}}
-                                </h3>
-                            </div>
+                            <div class="col-md-8">
+                                <div class="row">
+                                    <div class="col-md-7">
+                                        <h3 class="pull-left">
+                                            {{ad.title}}
+                                        </h3>
+                                    </div>
 
-                            <div class="col-md-5">
-                               <span class="pull-right">
-                                   {{ad.date | date:'d-MMM-yyyy'}}
-                               </span>
-                            </div>
-                        </div>
-
-
-                        <div class="row">
-                            <div class="col-md-3">
-                                <div class="panel panel-default">
-                                    <div class="panel-body">
-                                        <img class="picture" src="" ng-src="{{ad.imageDataUrl || 'http://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg'}}">
+                                    <div class="col-md-5">
+                                       <span class="pull-right">
+                                           {{ad.date | date:'d-MMM-yyyy'}}
+                                       </span>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-md-9">
+
+
                                 <div class="row">
-                                    <div class="col-md-12">
+                                    <div class="col-md-5">
                                         <div class="panel panel-default">
                                             <div class="panel-body">
-                                                {{ad.text}}
+                                                <img class="picture" src="" ng-src="{{ad.imageDataUrl || 'http://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg'}}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="panel panel-default">
+                                                    <div class="panel-body">
+                                                        {{ad.text}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <div>
+                                                    <h5>Category: </h5>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-7">
+                                                <div class="well well-sm">
+                                                    {{ad.categoryName}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <div>
+                                                    <h5>Town: </h5>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-7">
+                                                <div class="well well-sm">
+                                                    {{ad.townName}}
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
 
-                                <div class="row">
+                            <div class="col-md-4">
+                                <div class="row status">
                                     <div class="col-md-2">
                                         <div>
-                                            <h5>Name: </h5>
+                                            <h5>Status: </h5>
                                         </div>
                                     </div>
-                                    <div class="col-md-7">
+                                    <div class="col-md-8">
                                         <div class="well well-sm">
-                                            {{ad.ownerName}}
+                                            {{ad.status}}
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-2">
-                                        <div>
-                                            <h5>Email: </h5>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-7">
-                                        <div class="well well-sm">
-                                            {{ad.ownerEmail}}
-                                        </div>
-                                    </div>
+                                <div class="row button" ng-class="{hideButton : ad.status == 'Inactive'}">
+                                    <a href ng-click="deactivateAds(ad.id)" class="btn btn-info">Deactivate</a>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-2">
-                                        <div>
-                                            <h5>Phone: </h5>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-7">
-                                        <div class="well well-sm">
-                                            {{ad.ownerPhone}}
-                                        </div>
-                                    </div>
+                                <div class="row button" ng-class="{hideButton : (ad.status == 'WaitingApproval' || ad.status == 'Published')}">
+                                    <a href ng-click="go('/user/ads/edit/' + ad.id)" class="btn btn-warning">Edit</a>
                                 </div>
-
+                                <div class="row button" ng-class="{hideButton : (ad.status == 'WaitingApproval' || ad.status == 'Published')}">
+                                    <a href ng-click="publishAgain(ad.id)" class="btn btn-success">Publish Again</a>
+                                </div>
+                                <div class="row button" ng-class="{hideButton : (ad.status == 'WaitingApproval' || ad.status == 'Published')}">
+                                    <a href ng-click="go('/user/ads/delete/' + ad.id)" class="btn btn-danger">Delete</a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -87,27 +105,16 @@
         <div class="col-md-3">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Categories</h3>
+                    <h3 class="panel-title">My Ads</h3>
                 </div>
-                <div class="panel-body list-group-item" ng-class="{active : isActiveCategory == -1}" ng-click="clickCategories(-1)">
+                <div class="panel-body list-group-item" ng-class="{active : isActiveStatus == -1}" ng-click="clickStatus(-1)">
                     All
                 </div>
-                <div class="panel-body list-group-item" ng-repeat="category in allCategories" ng-class="{active : isActiveCategory == category.id}" ng-click="clickCategories(category.id)">
-                    {{category.name}}
+                <div class="panel-body list-group-item" ng-repeat="status in allStatus" ng-class="{active : isActiveStatus == status.serverName}" ng-click="clickStatus(status.serverName)">
+                    {{status.fullName}}
                 </div>
             </div>
 
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Towns</h3>
-                </div>
-                <div class="panel-body list-group-item" ng-click="clickTowns(-1)" ng-class="{active : isActiveTown == -1}" >
-                    All
-                </div>
-                <div class="panel-body list-group-item" ng-repeat="town in allTowns" ng-class="{active : isActiveTown == town.id}" ng-click="clickTowns(town.id)">
-                    {{town.name}}
-                </div>
-            </div>
         </div>
     </div>
 </div>

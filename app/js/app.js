@@ -24,6 +24,14 @@ var adsModule = angular.module('adsModule', ['ngRoute','ngResource'])
 			templateUrl: 'templates/userAds.html',
 			controller: 'UserAllAdsController'
 		});
+		$routeProvider.when('/user/ads/delete/:id', {
+			templateUrl: 'templates/deleteAds.html',
+			controller: 'DeleteAdsController'
+		});
+		$routeProvider.when('/user/ads/edit/:id', {
+			templateUrl: 'templates/editAds.html',
+			controller: 'EditAdsController'
+		});
 		$routeProvider.when('/user/profile', {
 			//templateUrl: 'templates/publishNewAd.html',
 			//controller: 'PublishNewAd'
