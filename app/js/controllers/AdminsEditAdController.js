@@ -1,9 +1,9 @@
 adsModule.controller('AdminsEditAdController', function ($scope, $location, $routeParams, adminPage) {
-    if(!localStorage.getItem('access_token') || !localStorage.getItem('isAdmin')){
+    if(!localStorage.getItem('access_token') || localStorage.getItem('isAdmin') != 'true'){
         $location.path('/login');
         return
     }
-    $('#changeHeader').text('Ads');
+    $('#changeHeader').text('Edit');
     $('#menu').load('/templates/menuAdmin.html');
     $('#username').text(localStorage.getItem('username'));
     $('#logout').addClass('navbar-collapse collapse').show();

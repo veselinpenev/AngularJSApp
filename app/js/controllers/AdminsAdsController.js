@@ -1,5 +1,5 @@
 adsModule.controller('AdminsAdsController', function ($scope, $location, adminPage) {
-    if(!localStorage.getItem('access_token') || !localStorage.getItem('isAdmin')){
+    if(!localStorage.getItem('access_token') || localStorage.getItem('isAdmin') != 'true'){
         $location.path('/login');
         return
     }

@@ -23,4 +23,13 @@ adsModule.controller('LogoutController', function ($scope, $location, userPage) 
             );
         })
     }
+
+    $scope.cancelLogout = function (){
+        var isAdmin = localStorage.getItem('isAdmin') == 'true';
+        if(isAdmin){
+            $location.path('/admin/ads');
+        } else {
+            $location.path('/user/home');
+        }
+    }
 });

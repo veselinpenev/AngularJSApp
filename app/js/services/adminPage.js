@@ -93,6 +93,93 @@ adsModule.factory('adminPage', function ($resource, $http) {
             })
     }
 
+    function deleteAd (success, id) {
+        var url = baseUrl + 'ads/' + id;
+
+        $http({
+            method: 'DELETE',
+            url: url,
+            headers: {
+                "Authorization": "Bearer " + access_token
+            }
+        }).success(function (data, status, headers, config) {
+            success(data)
+        })
+            .error(function (data, status, headers, config) {
+                showErrorMessage("Please try again");
+            })
+    }
+
+    function getCategory (success) {
+        var url = baseUrl + 'Categories';
+
+        $http({
+            method: 'GET',
+            url: url,
+            headers: {
+                "Authorization": "Bearer " + access_token
+            }
+        }).success(function (data, status, headers, config) {
+            success(data)
+        })
+            .error(function (data, status, headers, config) {
+                showErrorMessage("Please try again");
+            })
+    }
+
+    function createCategory (success, data) {
+        var url = baseUrl + 'Categories';
+
+        $http({
+            method: 'POST',
+            url: url,
+            data: data,
+            headers: {
+                "Authorization": "Bearer " + access_token
+            }
+        }).success(function (data, status, headers, config) {
+            success(data)
+        })
+            .error(function (data, status, headers, config) {
+                showErrorMessage("Please try again");
+            })
+    }
+
+    function editCategory (success, data, id) {
+        var url = baseUrl + 'Categories/' + id;
+
+        $http({
+            method: 'PUT',
+            url: url,
+            data: data,
+            headers: {
+                "Authorization": "Bearer " + access_token
+            }
+        }).success(function (data, status, headers, config) {
+            success(data)
+        })
+            .error(function (data, status, headers, config) {
+                showErrorMessage("Please try again");
+            })
+    }
+
+    function deleteCategory (success, id) {
+        var url = baseUrl + 'Categories/' + id;
+
+        $http({
+            method: 'DELETE',
+            url: url,
+            headers: {
+                "Authorization": "Bearer " + access_token
+            }
+        }).success(function (data, status, headers, config) {
+            success(data)
+        })
+            .error(function (data, status, headers, config) {
+                showErrorMessage("Please try again");
+            })
+    }
+
     function showErrorMessage(msg) {
         noty({
                 text: msg,
@@ -108,6 +195,11 @@ adsModule.factory('adminPage', function ($resource, $http) {
         approveAd: approveAd,
         rejectAd: rejectAd,
         getAdById: getAdById,
-        editAd: editAd
+        editAd: editAd,
+        deleteAd: deleteAd,
+        getCategory: getCategory,
+        createCategory: createCategory,
+        editCategory: editCategory,
+        deleteCategory: deleteCategory
     }
 });

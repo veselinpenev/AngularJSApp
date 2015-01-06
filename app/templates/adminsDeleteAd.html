@@ -1,0 +1,127 @@
+<div class="container well col-md-8 col-md-offset-2">
+    <div class="row">
+        <div class="col-md-7">
+            <h3 class="pull-left">
+                {{ad.title}}
+            </h3>
+        </div>
+
+        <div class="col-md-5">
+           <span class="pull-right">
+               {{ad.date | date:'d-MMM-yyyy'}}
+           </span>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <img class="picture" src="" ng-src="{{ad.imageDataUrl || 'http://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg'}}">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            {{ad.text}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-2">
+                    <div>
+                        <h5>Username: </h5>
+                    </div>
+                </div>
+                <div class="col-md-7">
+                    <div class="well well-sm">
+                        {{ad.ownerUsername}}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">
+                    <div>
+                        <h5>Name: </h5>
+                    </div>
+                </div>
+                <div class="col-md-7">
+                    <div class="well well-sm">
+                        {{ad.ownerName}}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">
+                    <div>
+                        <h5>Email: </h5>
+                    </div>
+                </div>
+                <div class="col-md-7">
+                    <div class="well well-sm">
+                        {{ad.ownerEmail}}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">
+                    <div>
+                        <h5>Phone: </h5>
+                    </div>
+                </div>
+                <div class="col-md-7">
+                    <div class="well well-sm">
+                        {{ad.ownerPhone}}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">
+                    <div>
+                        <h5>Category: </h5>
+                    </div>
+                </div>
+                <div class="col-md-7">
+                    <div class="well well-sm">
+                        {{ad.categoryName}}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">
+                    <div>
+                        <h5>Town: </h5>
+                    </div>
+                </div>
+                <div class="col-md-7">
+                    <div class="well well-sm">
+                        {{ad.townName}}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">
+                    <div>
+                        <h5>Status: </h5>
+                    </div>
+                </div>
+                <div class="col-md-7">
+                    <div class="well well-sm">
+                        {{ad.status}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row adminAdsButton">
+        <a href ng-click="adminDeleteAd(ad.id)" class="btn btn-primary">Delete</a>
+        <a href ng-click="go('/admin/ads')" class="btn btn-default">Cancel</a>
+    </div>
+</div>

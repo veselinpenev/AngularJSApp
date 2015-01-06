@@ -4,8 +4,9 @@ adsModule.controller('LoginController', function ($scope, $location, mainData) {
 
     $scope.loginUser = function (login, form){
         mainData.login(function (data) {
+            var isAdmin = data.isAdmin || false;
             localStorage.setItem('access_token', data.access_token);
-            localStorage.setItem('isAdmin', data.isAdmin);
+            localStorage.setItem('isAdmin', isAdmin);
             localStorage.setItem('username', data.username);
             if(data.isAdmin){
                 $location.path('/admin/ads');

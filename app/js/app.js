@@ -1,4 +1,4 @@
-var adsModule = angular.module('adsModule', ['ngRoute','ngResource'])
+var adsModule = angular.module('adsModule', ['ngRoute', 'ngResource', 'ui.bootstrap.pagination'])
 	.config(function ($routeProvider) {
 		$routeProvider.when('/', {
 			templateUrl: 'templates/all-ads.html',
@@ -49,8 +49,24 @@ var adsModule = angular.module('adsModule', ['ngRoute','ngResource'])
 			controller: 'AdminsEditAdController'
 		});
 		$routeProvider.when('/admin/ads/delete/:id', {
-			templateUrl: 'templates/editAds.html',
-			controller: 'EditAdsController'
+			templateUrl: 'templates/adminsDeleteAd.html',
+			controller: 'AdminsDeleteAdController'
+		});
+		$routeProvider.when('/admin/categories/list', {
+			templateUrl: 'templates/adminsCategoryList.html',
+			controller: 'AdminsCategoryList'
+		});
+		$routeProvider.when('/admin/categories/create', {
+			templateUrl: 'templates/adminCreateCategory.html',
+			controller: 'AdminsCreateCategory'
+		});
+		$routeProvider.when('/admin/categories/edit/:id/name/:name', {
+			templateUrl: 'templates/adminsEditCategories.html',
+			controller: 'AdminsEditCategoriesController'
+		});
+		$routeProvider.when('/admin/categories/delete/:id/name/:name', {
+			templateUrl: 'templates/adminsDeleteCategories.html',
+			controller: 'AdminsDeleteCategoriesController'
 		});
 		$routeProvider.otherwise({redirectTo: '/'})
 	});
