@@ -1,21 +1,16 @@
-adsModule.controller('AdminsCreateCategory', function ($scope, $location, $routeParams, adminPage) {
+adsModule.controller('AdminsTownsList', function ($scope, $location, $routeParams, adminPage) {
     if(!localStorage.getItem('access_token') || localStorage.getItem('isAdmin') != 'true'){
         $location.path('/login');
         return
     }
-    $('#changeHeader').text('Create Categories');
+    $('#changeHeader').text('Towns');
     $('#menu').load('/templates/menuAdmin.html');
     $('#username').text(localStorage.getItem('username'));
     $('#logout').addClass('navbar-collapse collapse').show();
 
-    $scope.createCategory = function (name) {
-        var category = {};
-        category.name = name.username;
-        adminPage.createCategory(function () {
-            showSuccess('Successfully create category!');
-            $location.path('/admin/categories/list');
-        }, category)
-    }
+    adminPage.getTowns(function (resp) {
+        $scope.townsList = resp;
+    })
 
     function showSuccess(msg) {
         noty({

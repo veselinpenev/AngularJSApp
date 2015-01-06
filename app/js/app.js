@@ -68,5 +68,21 @@ var adsModule = angular.module('adsModule', ['ngRoute', 'ngResource', 'ui.bootst
 			templateUrl: 'templates/adminsDeleteCategories.html',
 			controller: 'AdminsDeleteCategoriesController'
 		});
+		$routeProvider.when('/admin/towns/list', {
+			templateUrl: 'templates/adminsTownsList.html',
+			controller: 'AdminsTownsList'
+		});
+		$routeProvider.when('/admin/towns/create', {
+			templateUrl: 'templates/adminCreateTowns.html',
+			controller: 'AdminsCreateTowns'
+		});
+		$routeProvider.when('/admin/towns/edit/:id/name/:name', {
+			templateUrl: 'templates/adminsEditTowns.html',
+			controller: 'AdminsEditTowns'
+		});
+		$routeProvider.when('/admin/towns/delete/:id/name/:name', {
+			templateUrl: 'templates/adminsDeleteTowns.html',
+			controller: 'AdminsDeleteTowns'
+		});
 		$routeProvider.otherwise({redirectTo: '/'})
 	});

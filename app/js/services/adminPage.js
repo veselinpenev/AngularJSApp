@@ -180,6 +180,76 @@ adsModule.factory('adminPage', function ($resource, $http) {
             })
     }
 
+    function getTowns (success) {
+        var url = baseUrl + 'Towns';
+
+        $http({
+            method: 'GET',
+            url: url,
+            headers: {
+                "Authorization": "Bearer " + access_token
+            }
+        }).success(function (data, status, headers, config) {
+            success(data)
+        })
+            .error(function (data, status, headers, config) {
+                showErrorMessage("Please try again");
+            })
+    }
+
+    function createTowns (success, data) {
+        var url = baseUrl + 'Towns';
+
+        $http({
+            method: 'POST',
+            url: url,
+            data: data,
+            headers: {
+                "Authorization": "Bearer " + access_token
+            }
+        }).success(function (data, status, headers, config) {
+            success(data)
+        })
+            .error(function (data, status, headers, config) {
+                showErrorMessage("Please try again");
+            })
+    }
+
+    function editTowns (success, data, id) {
+        var url = baseUrl + 'Towns/' + id;
+
+        $http({
+            method: 'PUT',
+            url: url,
+            data: data,
+            headers: {
+                "Authorization": "Bearer " + access_token
+            }
+        }).success(function (data, status, headers, config) {
+            success(data)
+        })
+            .error(function (data, status, headers, config) {
+                showErrorMessage("Please try again");
+            })
+    }
+
+    function deleteTowns (success, id) {
+        var url = baseUrl + 'Towns/' + id;
+
+        $http({
+            method: 'DELETE',
+            url: url,
+            headers: {
+                "Authorization": "Bearer " + access_token
+            }
+        }).success(function (data, status, headers, config) {
+            success(data)
+        })
+            .error(function (data, status, headers, config) {
+                showErrorMessage("Please try again");
+            })
+    }
+
     function showErrorMessage(msg) {
         noty({
                 text: msg,
@@ -200,6 +270,10 @@ adsModule.factory('adminPage', function ($resource, $http) {
         getCategory: getCategory,
         createCategory: createCategory,
         editCategory: editCategory,
-        deleteCategory: deleteCategory
+        deleteCategory: deleteCategory,
+        getTowns: getTowns,
+        createTowns: createTowns,
+        editTowns: editTowns,
+        deleteTowns: deleteTowns
     }
 });
