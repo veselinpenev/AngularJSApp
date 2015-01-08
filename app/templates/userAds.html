@@ -98,9 +98,14 @@
                     </div>
                 </li>
             </ul>
-            <div data-pagination="" data-num-pages="numPages()"
-                 data-current-page="currentPage" data-max-size="maxSize"
-                 data-boundary-links="true"></div>
+            <pagination
+                    total-items="allUserAds.numItems"
+                    ng-model="adsParams.startPage"
+                    items-per-page="adsParams.pageSize"
+                    ng-change="pageChange()"
+                    max-size="9"
+                    boundary-links="true">
+            </pagination>
         </div>
         <div class="col-md-3">
             <div class="panel panel-primary">

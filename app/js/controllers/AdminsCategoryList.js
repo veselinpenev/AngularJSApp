@@ -8,17 +8,47 @@ adsModule.controller('AdminsCategoryList', function ($scope, $location, $routePa
     $('#username').text(localStorage.getItem('username'));
     $('#logout').addClass('navbar-collapse collapse').show();
 
-    adminPage.getCategory(function (resp) {
-        $scope.categoryList = resp;
-    })
+    var sort = -1;
+    var sortById = '-Id';
+    var sortByName = '-Name';
+    $scope.adsParams = {
+        startPage: 1,
+        pageSize: 10
+    };
 
-    function showSuccess(msg) {
-        noty({
-                text: msg,
-                type: 'success',
-                layout: 'topCenter',
-                closeWith: ["button"],
-                timeout: 3000}
-        );
+    function updateCategory (sort){
+        adminPage.getCategory(function (resp) {
+            $scope.categoryList = resp;
+        }, $scope.adsParams, sort);
+    }
+
+    updateCategory(sort);
+
+    $scope.clickedSortIdCategory = function () {
+        if(sortById == '-Id'){
+            sortById = 'Id';
+            sort = 'Id';
+        } else if(sortById == 'Id') {
+            sortById = '-Id';
+            sort = '-Id';
+        }
+        sortByName = '-Name';
+        updateCategory(sort);
+    };
+
+    $scope.clickedSortNameCategory = function () {
+        if(sortByName == '-Name'){
+            sortByName = 'Name';
+            sort = 'Name';
+        } else if(sortByName == 'Name') {
+            sortByName = '-Name';
+            sort = '-Name';
+        }
+        sortById = '-Id';
+        updateCategory(sort);
+    };
+
+    $scope.pageChange = function () {
+        updateCategory(sort);
     }
 });

@@ -11,6 +11,10 @@ adsModule.controller('UserAllAdsController', function ($scope, $location, userPa
     var statusName = -1;
     $scope.isActiveStatus = -1;
     $scope.hideButton = 'hideButton';
+    $scope.adsParams = {
+        startPage: 1,
+        pageSize: 10
+    };
 
     updateUserAds();
     $scope.clickStatus = function (serverName) {
@@ -22,7 +26,7 @@ adsModule.controller('UserAllAdsController', function ($scope, $location, userPa
     function updateUserAds(){
         userPage.getAllUserAds(function (resp) {
             $scope.allUserAds = resp;
-        }, statusName)
+        }, $scope.adsParams, statusName)
     }
 
     $scope.deactivateAds = function (id) {
@@ -50,4 +54,8 @@ adsModule.controller('UserAllAdsController', function ($scope, $location, userPa
             );
         }, id);
     };
+
+    $scope.pageChange = function () {
+        updateUserAds();
+    }
 });

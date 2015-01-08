@@ -2,8 +2,8 @@ adsModule.factory('mainData', function ($http, $log) {
     var baseUrl = 'http://localhost:1337/api/';
 
     return {
-        getAllAds : function (success, page, categoryId, townId) {
-            var url = baseUrl + 'ads?pagesize=10&startpage=' + page;
+        getAllAds : function (success, params, categoryId, townId) {
+            var url = baseUrl + 'ads?pagesize=' + params.pageSize + '&startpage=' + params.startPage;
             if(categoryId != -1){
                 url+='&CategoryId='+categoryId;
             }

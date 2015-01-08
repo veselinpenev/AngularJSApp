@@ -10,8 +10,10 @@ adsModule.controller('MainController', function ($scope, $location, mainData) {
     $scope.isActiveTown = -1;
     $scope.active = 'active';
     $scope.showLogout = false;
-    $scope.startPage = 1;
-    $scope.currentPage = 1;
+    $scope.adsParams = {
+        startPage: 1,
+        pageSize: 10
+    };
 
     $scope.allStatus={
         1:{
@@ -43,7 +45,7 @@ adsModule.controller('MainController', function ($scope, $location, mainData) {
     function updateData(){
         mainData.getAllAds(function (resp) {
             $scope.allAds = resp;
-        }, $scope.currentPage, categoryId, townId);
+        }, $scope.adsParams, categoryId, townId);
     }
 
     $scope.clickCategories = function (id) {
@@ -59,7 +61,7 @@ adsModule.controller('MainController', function ($scope, $location, mainData) {
     }
 
     $scope.pageChange = function () {
-        console.log('URAAA');
+        updateData();
     }
 
 

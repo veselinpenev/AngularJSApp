@@ -4,8 +4,8 @@ adsModule.factory('adminPage', function ($resource, $http) {
     var page = 1;
     $http.defaults.headers.common['Authorization'] = 'Bearer ' + access_token;
 
-    function getAllAds (success, page, categoryId, townId, status) {
-        var url = baseUrl + 'ads?pagesize=10&startpage=' + page;
+    function getAllAds (success, params, categoryId, townId, status) {
+        var url = baseUrl + 'ads?pagesize=' + params.pageSize + '&startpage=' + params.startPage;
         if(status != -1){
             url+='&status='+ status;
         }
@@ -110,8 +110,11 @@ adsModule.factory('adminPage', function ($resource, $http) {
             })
     }
 
-    function getCategory (success) {
-        var url = baseUrl + 'Categories';
+    function getCategory (success, params, sort) {
+        var url = baseUrl + 'Categories?pagesize=' + params.pageSize + '&startpage=' + params.startPage;
+        if(sort != -1){
+            url = url + '&SortBy=' + sort;
+        }
 
         $http({
             method: 'GET',
@@ -180,8 +183,11 @@ adsModule.factory('adminPage', function ($resource, $http) {
             })
     }
 
-    function getTowns (success) {
-        var url = baseUrl + 'Towns';
+    function getTowns (success, params, sort) {
+        var url = baseUrl + 'Towns?pagesize=' + params.pageSize + '&startpage=' + params.startPage;
+        if(sort != -1){
+            url = url + '&SortBy=' + sort;
+        }
 
         $http({
             method: 'GET',
@@ -250,6 +256,62 @@ adsModule.factory('adminPage', function ($resource, $http) {
             })
     }
 
+    function getUsers (success, params, sort) {
+        var url = baseUrl + 'users?pagesize=' + params.pageSize + '&startpage=' + params.startPage;
+        if(sort != -1){
+            url = url + '&SortBy=' + sort;
+        }
+
+        $http({
+            method: 'GET',
+            url: url,
+            headers: {
+                "Authorization": "Bearer " + access_token
+            }
+        }).success(function (data, status, headers, config) {
+            success(data)
+        })
+            .error(function (data, status, headers, config) {
+                showErrorMessage("Please try again");
+            })
+    }
+
+    function editUserPassword (success, data) {
+        var url = baseUrl + 'setpassword';
+
+        $http({
+            method: 'PUT',
+            url: url,
+            data: data,
+            headers: {
+                "Authorization": "Bearer " + access_token
+            }
+        }).success(function (data, status, headers, config) {
+            success(data)
+        })
+            .error(function (data, status, headers, config) {
+                showErrorMessage("Please try again");
+            })
+    }
+
+    function editUserProfile (success, data) {
+        var url = baseUrl + 'user/' + data.username;
+
+        $http({
+            method: 'PUT',
+            url: url,
+            data: data,
+            headers: {
+                "Authorization": "Bearer " + access_token
+            }
+        }).success(function (data, status, headers, config) {
+            success(data)
+        })
+            .error(function (data, status, headers, config) {
+                showErrorMessage("Please try again");
+            })
+    }
+
     function showErrorMessage(msg) {
         noty({
                 text: msg,
@@ -274,6 +336,9 @@ adsModule.factory('adminPage', function ($resource, $http) {
         getTowns: getTowns,
         createTowns: createTowns,
         editTowns: editTowns,
-        deleteTowns: deleteTowns
+        deleteTowns: deleteTowns,
+        getUsers: getUsers,
+        editUserPassword: editUserPassword,
+        editUserProfile: editUserProfile
     }
 });

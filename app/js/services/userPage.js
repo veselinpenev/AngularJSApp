@@ -1,8 +1,9 @@
 adsModule.factory('userPage', function ($resource, $http) {
 	var baseUrl = 'http://localhost:1337/api/user/';
 	var access_token = localStorage.getItem('access_token');
-	var page = 1;
-	$http.defaults.headers.common['Authorization'] = 'Bearer ' + access_token;
+	function updateUserToken(){
+		$http.defaults.headers.common['Authorization'] = 'Bearer ' + access_token;
+	}
 
 	var resource = $resource(
 		baseUrl + 'ads/:id',
@@ -13,22 +14,27 @@ adsModule.factory('userPage', function ($resource, $http) {
 		});
 
 	function getAllAds() {
+		updateUserToken();
 		return resource.get();
 	}
 
 	function createNewAd(ad) {
+		updateUserToken();
 		return resource.save(ad);
 	}
 
 	function getAdById(id) {
+		updateUserToken();
 		return resource.get({id: id});
 	}
 
 	function editAd(id, ad) {
+		updateUserToken();
 		return resource.update({id: id}, ad);
 	}
 
 	function deleteAd(id) {
+		updateUserToken();
 		return resource.delete({id: id});
 	}
 
@@ -47,8 +53,9 @@ adsModule.factory('userPage', function ($resource, $http) {
 			})
 	}
 
-	function getAllUserAds(success, statusId){
-		var url = baseUrl + 'ads?pagesize=10&startpage=' + page;
+	function getAllUserAds(success, params, statusId){
+		updateUserToken();
+		var url = baseUrl + 'ads?pagesize=' + params.pageSize + '&startpage=' + params.startPage;
 		if(statusId != -1){
 			url+='&status='+statusId;
 		}
@@ -68,6 +75,7 @@ adsModule.factory('userPage', function ($resource, $http) {
 	}
 
 	function deactivateAds(success, id){
+		updateUserToken();
 		var url = baseUrl + 'ads/deactivate/' + id;
 		$http({
 			method: 'PUT',
@@ -84,6 +92,7 @@ adsModule.factory('userPage', function ($resource, $http) {
 	}
 
 	function publishAgain(success, id) {
+		updateUserToken();
 		var url = baseUrl + 'ads/publishagain/' + id;
 		$http({
 			method: 'PUT',
@@ -100,6 +109,7 @@ adsModule.factory('userPage', function ($resource, $http) {
 	}
 
 	function changePassword(success, password) {
+		updateUserToken();
 		var data = {
 			oldPassword: password.oldPassword,
 			newPassword: password.newPassword,
@@ -122,6 +132,7 @@ adsModule.factory('userPage', function ($resource, $http) {
 	}
 
 	function getUserProfile(success) {
+		updateUserToken();
 		var url = baseUrl + 'profile';
 		$http({
 			method: 'GET',
@@ -138,7 +149,7 @@ adsModule.factory('userPage', function ($resource, $http) {
 	}
 
 	function updateUserProfile(success, profile) {
-
+		updateUserToken();
 		var url = baseUrl + 'profile';
 		$http({
 			method: 'PUT',

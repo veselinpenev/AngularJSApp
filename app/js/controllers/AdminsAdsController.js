@@ -12,6 +12,10 @@ adsModule.controller('AdminsAdsController', function ($scope, $location, adminPa
     $scope.townId = -1;
     $scope.statusId = -1;
     $scope.active = 'active';
+    $scope.adsParams = {
+        startPage: 1,
+        pageSize: 10
+    };
 
 
     updateData();
@@ -19,7 +23,7 @@ adsModule.controller('AdminsAdsController', function ($scope, $location, adminPa
     function updateData(){
         adminPage.getAllAds(function (resp) {
             $scope.allAdminAds = resp;
-        }, 1,$scope.categoryId, $scope.townId, $scope.statusId)
+        }, $scope.adsParams,$scope.categoryId, $scope.townId, $scope.statusId)
     }
 
     $scope.clickCategories = function(id){
@@ -48,6 +52,10 @@ adsModule.controller('AdminsAdsController', function ($scope, $location, adminPa
             updateData();
             showSuccess("Successfully reject ad");
         }, id)
+    }
+
+    $scope.pageChange = function () {
+        updateData();
     }
 
     function showSuccess(msg) {

@@ -8,17 +8,48 @@ adsModule.controller('AdminsTownsList', function ($scope, $location, $routeParam
     $('#username').text(localStorage.getItem('username'));
     $('#logout').addClass('navbar-collapse collapse').show();
 
-    adminPage.getTowns(function (resp) {
-        $scope.townsList = resp;
-    })
+    var sort = -1;
+    var sortById = '-Id';
+    var sortByName = '-Name';
+    $scope.adsParams = {
+        startPage: 1,
+        pageSize: 10
+    };
 
-    function showSuccess(msg) {
-        noty({
-                text: msg,
-                type: 'success',
-                layout: 'topCenter',
-                closeWith: ["button"],
-                timeout: 3000}
-        );
+    function updateTowns (sort){
+
+        adminPage.getTowns(function (resp) {
+            $scope.townsList = resp;
+        },$scope.adsParams, sort)
+    }
+
+    updateTowns(sort);
+
+    $scope.clickedSortIdTown = function () {
+        if(sortById == '-Id'){
+            sortById = 'Id';
+            sort =  'Id';
+        } else if(sortById == 'Id') {
+            sortById = '-Id';
+            sort =  '-Id';
+        }
+        sortByName = '-Name';
+        updateTowns(sort);
+    }
+
+    $scope.clickedSortNameTown = function () {
+        if(sortByName == '-Name'){
+            sortByName = 'Name';
+            sort =  'Name';
+        } else if(sortByName == 'Name') {
+            sortByName = '-Name';
+            sort =  '-Name';
+        }
+        sortById = '-Id';
+        updateTowns(sort);
+    }
+
+    $scope.pageChange = function () {
+        updateTowns(sort);
     }
 });
