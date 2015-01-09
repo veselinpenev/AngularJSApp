@@ -14,8 +14,8 @@
             <td>{{user.email}}</td>
             <td>{{user.phoneNumber}}</td>
             <td class="col-md-2">
-                <a href ng-click="clickedEditUser(user.username, user.name, user.email, user.phoneNumber, user.isAdmin)" class="btn btn-warning btn-xs">Edit</a>
-                <a href ng-click="go('/admin/towns/delete/' + user.id + '/name/' + town.username)" class="btn btn-danger btn-xs">Delete</a>
+                <a href ng-click="clickedEditUser(user.username, user.name, user.email, user.phoneNumber, user.townId, user.townName, user.isAdmin)" class="btn btn-warning btn-xs">Edit</a>
+                <a href ng-click="clickedDeleteUser(user.username, user.name, user.email, user.phoneNumber, user.townId, user.townName, user.isAdmin)" class="btn btn-danger btn-xs">Delete</a>
             </td>
         </tr>
         </tbody>

@@ -92,5 +92,9 @@ var adsModule = angular.module('adsModule', ['ngRoute', 'ngResource', 'ui.bootst
 			templateUrl: 'templates/adminsUsersEdit.html',
 			controller: 'AdminsUsersEdit'
 		});
+		$routeProvider.when('/admin/users/delete', {
+			templateUrl: 'templates/adminsUsersDelete.html',
+			controller: 'AdminsUsersDelete'
+		});
 		$routeProvider.otherwise({redirectTo: '/'})
 	});

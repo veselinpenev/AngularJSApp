@@ -8,14 +8,14 @@ adsModule.controller('AdminsUsersEdit', function ($scope, $location, adminPage) 
     $('#username').text(localStorage.getItem('username'));
     $('#logout').addClass('navbar-collapse collapse').show();
 
-    $scope.userProfile = JSON.parse(sessionStorage.getItem('editUser'));
+    $scope.userProfile = JSON.parse(sessionStorage.getItem('updateUser'));
     $scope.updateUserProfile = function (user, form) {
         var data = {
             username: $scope.userProfile.username,
             name: user.name,
             email: user.email,
             phonenumber: user.phoneNumber,
-            townid: user.townId,
+            townId: user.townId,
             isAdmin: user.isAdmin
         };
         adminPage.editUserProfile(function (resp) {

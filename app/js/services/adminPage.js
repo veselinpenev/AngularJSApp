@@ -312,6 +312,23 @@ adsModule.factory('adminPage', function ($resource, $http) {
             })
     }
 
+    function deleteUserProfile (success, username) {
+        var url = baseUrl + 'user/' + username;
+
+        $http({
+            method: 'DELETE',
+            url: url,
+            headers: {
+                "Authorization": "Bearer " + access_token
+            }
+        }).success(function (data, status, headers, config) {
+            success(data)
+        })
+            .error(function (data, status, headers, config) {
+                showErrorMessage("Please try again");
+            })
+    }
+
     function showErrorMessage(msg) {
         noty({
                 text: msg,
@@ -339,6 +356,7 @@ adsModule.factory('adminPage', function ($resource, $http) {
         deleteTowns: deleteTowns,
         getUsers: getUsers,
         editUserPassword: editUserPassword,
-        editUserProfile: editUserProfile
+        editUserProfile: editUserProfile,
+        deleteUserProfile: deleteUserProfile
     }
 });

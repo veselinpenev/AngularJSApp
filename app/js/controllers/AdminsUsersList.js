@@ -83,16 +83,32 @@ adsModule.controller('AdminsUsersList', function ($scope, $location, $routeParam
         updateUsers(sort);
     };
     
-    $scope.clickedEditUser = function (username, name, email, phone, isAdmin) {
+    $scope.clickedEditUser = function (username, name, email, phone, townId, townName, isAdmin) {
         var user = {
             username: username,
             name: name,
             email: email,
             phoneNumber: phone,
+            townId: townId,
+            townName: townName,
             isAdmin: isAdmin
-        }
-        sessionStorage.setItem('editUser', JSON.stringify(user));
+        };
+        sessionStorage.setItem('updateUser', JSON.stringify(user));
         $location.path('/admin/users/edit');
+    }
+
+    $scope.clickedDeleteUser= function (username, name, email, phone, townId, townName, isAdmin) {
+        var user = {
+            username: username,
+            name: name,
+            email: email,
+            phoneNumber: phone,
+            townId: townId,
+            townName: townName,
+            isAdmin: isAdmin
+        };
+        sessionStorage.setItem('updateUser', JSON.stringify(user));
+        $location.path('/admin/users/delete');
     }
 
 
