@@ -43,8 +43,7 @@ adsModule.factory('mainData', function ($http, $log) {
                 data: {username: username, password: password}
             }).success(function (data, status, headers, config) {
                 success(data)
-            })
-                .error(function (data, status, headers, config) {
+            }).error(function (data, status, headers, config) {
                     showErrorMessage(data.error_description);
                 })
         },
@@ -67,8 +66,7 @@ adsModule.factory('mainData', function ($http, $log) {
                 data: data
             }).success(function (data, status, headers, config) {
                 success(data)
-            })
-                .error(function (data, status, headers, config) {
+            }).error(function (data, status, headers, config) {
                     showErrorMessage('Register invalid');
                 })
         }

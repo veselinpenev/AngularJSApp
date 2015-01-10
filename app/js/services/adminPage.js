@@ -35,8 +35,7 @@ adsModule.factory('adminPage', function ($resource, $http) {
             }
         }).success(function (data, status, headers, config) {
             success(data)
-        })
-            .error(function (data, status, headers, config) {
+        }).error(function (data, status, headers, config) {
                 showErrorMessage("Please try again");
             })
     }
@@ -52,8 +51,7 @@ adsModule.factory('adminPage', function ($resource, $http) {
             }
         }).success(function (data, status, headers, config) {
             success(data)
-        })
-            .error(function (data, status, headers, config) {
+        }).error(function (data, status, headers, config) {
                 showErrorMessage("Please try again");
             })
     }
@@ -69,8 +67,7 @@ adsModule.factory('adminPage', function ($resource, $http) {
             }
         }).success(function (data, status, headers, config) {
             success(data)
-        })
-            .error(function (data, status, headers, config) {
+        }).error(function (data, status, headers, config) {
                 showErrorMessage("Please try again");
             })
     }
@@ -87,8 +84,7 @@ adsModule.factory('adminPage', function ($resource, $http) {
             }
         }).success(function (data, status, headers, config) {
             success(data)
-        })
-            .error(function (data, status, headers, config) {
+        }).error(function (data, status, headers, config) {
                 showErrorMessage("Please try again");
             })
     }
@@ -104,8 +100,7 @@ adsModule.factory('adminPage', function ($resource, $http) {
             }
         }).success(function (data, status, headers, config) {
             success(data)
-        })
-            .error(function (data, status, headers, config) {
+        }).error(function (data, status, headers, config) {
                 showErrorMessage("Please try again");
             })
     }
@@ -124,8 +119,7 @@ adsModule.factory('adminPage', function ($resource, $http) {
             }
         }).success(function (data, status, headers, config) {
             success(data)
-        })
-            .error(function (data, status, headers, config) {
+        }).error(function (data, status, headers, config) {
                 showErrorMessage("Please try again");
             })
     }
@@ -142,8 +136,7 @@ adsModule.factory('adminPage', function ($resource, $http) {
             }
         }).success(function (data, status, headers, config) {
             success(data)
-        })
-            .error(function (data, status, headers, config) {
+        }).error(function (data, status, headers, config) {
                 showErrorMessage("Please try again");
             })
     }
@@ -160,8 +153,7 @@ adsModule.factory('adminPage', function ($resource, $http) {
             }
         }).success(function (data, status, headers, config) {
             success(data)
-        })
-            .error(function (data, status, headers, config) {
+        }).error(function (data, status, headers, config) {
                 showErrorMessage("Please try again");
             })
     }
@@ -177,8 +169,7 @@ adsModule.factory('adminPage', function ($resource, $http) {
             }
         }).success(function (data, status, headers, config) {
             success(data)
-        })
-            .error(function (data, status, headers, config) {
+        }).error(function (data, status, headers, config) {
                 showErrorMessage("Please try again");
             })
     }
@@ -197,8 +188,7 @@ adsModule.factory('adminPage', function ($resource, $http) {
             }
         }).success(function (data, status, headers, config) {
             success(data)
-        })
-            .error(function (data, status, headers, config) {
+        }).error(function (data, status, headers, config) {
                 showErrorMessage("Please try again");
             })
     }
@@ -215,8 +205,7 @@ adsModule.factory('adminPage', function ($resource, $http) {
             }
         }).success(function (data, status, headers, config) {
             success(data)
-        })
-            .error(function (data, status, headers, config) {
+        }).error(function (data, status, headers, config) {
                 showErrorMessage("Please try again");
             })
     }
@@ -233,8 +222,7 @@ adsModule.factory('adminPage', function ($resource, $http) {
             }
         }).success(function (data, status, headers, config) {
             success(data)
-        })
-            .error(function (data, status, headers, config) {
+        }).error(function (data, status, headers, config) {
                 showErrorMessage("Please try again");
             })
     }
@@ -250,8 +238,7 @@ adsModule.factory('adminPage', function ($resource, $http) {
             }
         }).success(function (data, status, headers, config) {
             success(data)
-        })
-            .error(function (data, status, headers, config) {
+        }).error(function (data, status, headers, config) {
                 showErrorMessage("Please try again");
             })
     }
@@ -270,8 +257,7 @@ adsModule.factory('adminPage', function ($resource, $http) {
             }
         }).success(function (data, status, headers, config) {
             success(data)
-        })
-            .error(function (data, status, headers, config) {
+        }).error(function (data, status, headers, config) {
                 showErrorMessage("Please try again");
             })
     }
@@ -288,9 +274,8 @@ adsModule.factory('adminPage', function ($resource, $http) {
             }
         }).success(function (data, status, headers, config) {
             success(data)
-        })
-            .error(function (data, status, headers, config) {
-                showErrorMessage("Please try again");
+        }).error(function (data, status, headers, config) {
+                showErrorMessage(data.message);
             })
     }
 
@@ -306,8 +291,7 @@ adsModule.factory('adminPage', function ($resource, $http) {
             }
         }).success(function (data, status, headers, config) {
             success(data)
-        })
-            .error(function (data, status, headers, config) {
+        }).error(function (data, status, headers, config) {
                 showErrorMessage("Please try again");
             })
     }
@@ -323,8 +307,7 @@ adsModule.factory('adminPage', function ($resource, $http) {
             }
         }).success(function (data, status, headers, config) {
             success(data)
-        })
-            .error(function (data, status, headers, config) {
+        }).error(function (data, status, headers, config) {
                 showErrorMessage("Please try again");
             })
     }

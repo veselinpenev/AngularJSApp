@@ -47,14 +47,12 @@ adsModule.factory('userPage', function ($resource, $http) {
 			}
 		}).success(function (data, status, headers, config) {
 			success(data)
-		})
-			.error(function (data, status, headers, config) {
+		}).error(function (data, status, headers, config) {
 				showErrorMessage(data.error_description);
 			})
 	}
 
 	function getAllUserAds(success, params, statusId){
-		updateUserToken();
 		var url = baseUrl + 'ads?pagesize=' + params.pageSize + '&startpage=' + params.startPage;
 		if(statusId != -1){
 			url+='&status='+statusId;
@@ -68,14 +66,12 @@ adsModule.factory('userPage', function ($resource, $http) {
 			}
 		}).success(function (data, status, headers, config) {
 			success(data)
-		})
-			.error(function (data, status, headers, config) {
+		}).error(function (data, status, headers, config) {
 				showErrorMessage('Please try again');
 			})
 	}
 
 	function deactivateAds(success, id){
-		updateUserToken();
 		var url = baseUrl + 'ads/deactivate/' + id;
 		$http({
 			method: 'PUT',
@@ -85,14 +81,12 @@ adsModule.factory('userPage', function ($resource, $http) {
 			}
 		}).success(function (data, status, headers, config) {
 			success(data)
-		})
-			.error(function (data, status, headers, config) {
+		}).error(function (data, status, headers, config) {
 				showErrorMessage('Please try again');
 			})
 	}
 
 	function publishAgain(success, id) {
-		updateUserToken();
 		var url = baseUrl + 'ads/publishagain/' + id;
 		$http({
 			method: 'PUT',
@@ -102,14 +96,12 @@ adsModule.factory('userPage', function ($resource, $http) {
 			}
 		}).success(function (data, status, headers, config) {
 			success(data)
-		})
-			.error(function (data, status, headers, config) {
+		}).error(function (data, status, headers, config) {
 				showErrorMessage('Please try again');
 			})
 	}
 
 	function changePassword(success, password) {
-		updateUserToken();
 		var data = {
 			oldPassword: password.oldPassword,
 			newPassword: password.newPassword,
@@ -125,14 +117,12 @@ adsModule.factory('userPage', function ($resource, $http) {
 			}
 		}).success(function (data, status, headers, config) {
 			success(data)
-		})
-			.error(function (data, status, headers, config) {
+		}).error(function (data, status, headers, config) {
 				showErrorMessage("Please check your password and try again");
 			})
 	}
 
 	function getUserProfile(success) {
-		updateUserToken();
 		var url = baseUrl + 'profile';
 		$http({
 			method: 'GET',
@@ -142,14 +132,12 @@ adsModule.factory('userPage', function ($resource, $http) {
 			}
 		}).success(function (data, status, headers, config) {
 			success(data)
-		})
-			.error(function (data, status, headers, config) {
+		}).error(function (data, status, headers, config) {
 				showErrorMessage("Please check your password and try again");
 			})
 	}
 
 	function updateUserProfile(success, profile) {
-		updateUserToken();
 		var url = baseUrl + 'profile';
 		$http({
 			method: 'PUT',
@@ -160,8 +148,7 @@ adsModule.factory('userPage', function ($resource, $http) {
 			}
 		}).success(function (data, status, headers, config) {
 			success(data)
-		})
-			.error(function (data, status, headers, config) {
+		}).error(function (data, status, headers, config) {
 				showErrorMessage(data.message);
 			})
 	}
