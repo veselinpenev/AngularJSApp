@@ -1,9 +1,9 @@
-adsModule.controller('AdminsEditCategoriesController', function ($scope, $location, $routeParams, adminPage) {
+adsModule.controller('AdminsDeleteCategoriesController', function ($scope, $location, $routeParams, adminPage) {
     if(!localStorage.getItem('access_token') || localStorage.getItem('isAdmin') != 'true'){
         $location.path('/login');
         return
     }
-    $('#changeHeader').text('Edit Categories');
+    $('#changeHeader').text('Delete Categories');
     $('#menu').load('/templates/menuAdmin.html');
     $('#username').text(localStorage.getItem('username'));
     $('#logout').addClass('navbar-collapse collapse').show();
@@ -11,13 +11,12 @@ adsModule.controller('AdminsEditCategoriesController', function ($scope, $locati
     var id = $routeParams.id;
     $scope.category = {};
     $scope.category.username = $routeParams.name;
-    $scope.editCategory = function (name) {
-        var category = {};
-        category.name = name.username;
-        adminPage.editCategory(function () {
-            showSuccess('Successfully edit category!');
+    $scope.deleteCategory = function () {
+        adminPage.deleteCategory(function () {
+            $scope.$emit('updateCategories');
+            showSuccess('Successfully delete category!');
             $location.path('/admin/categories/list');
-        }, category, id);
+        }, id);
     }
 
     function showSuccess(msg) {

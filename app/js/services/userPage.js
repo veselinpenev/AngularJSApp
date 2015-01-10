@@ -162,7 +162,7 @@ adsModule.factory('userPage', function ($resource, $http) {
 			success(data)
 		})
 			.error(function (data, status, headers, config) {
-				showErrorMessage("Please check your password and try again");
+				showErrorMessage(data.message);
 			})
 	}
 

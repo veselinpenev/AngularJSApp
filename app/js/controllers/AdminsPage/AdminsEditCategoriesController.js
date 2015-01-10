@@ -1,23 +1,24 @@
-adsModule.controller('AdminsEditTowns', function ($scope, $location, $routeParams, adminPage) {
+adsModule.controller('AdminsEditCategoriesController', function ($scope, $location, $routeParams, adminPage) {
     if(!localStorage.getItem('access_token') || localStorage.getItem('isAdmin') != 'true'){
         $location.path('/login');
         return
     }
-    $('#changeHeader').text('Edit Towns');
+    $('#changeHeader').text('Edit Categories');
     $('#menu').load('/templates/menuAdmin.html');
     $('#username').text(localStorage.getItem('username'));
     $('#logout').addClass('navbar-collapse collapse').show();
 
     var id = $routeParams.id;
-    $scope.town = {};
-    $scope.town.username = $routeParams.name;
-    $scope.editTown = function (name) {
-        var town = {};
-        town.name = name.username;
-        adminPage.editTowns(function () {
-            showSuccess('Successfully edit Town!');
-            $location.path('/admin/towns/list');
-        }, town, id);
+    $scope.category = {};
+    $scope.category.username = $routeParams.name;
+    $scope.editCategory = function (name) {
+        var category = {};
+        category.name = name.username;
+        adminPage.editCategory(function () {
+            $scope.$emit('updateCategories');
+            showSuccess('Successfully edit category!');
+            $location.path('/admin/categories/list');
+        }, category, id);
     }
 
     function showSuccess(msg) {

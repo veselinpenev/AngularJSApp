@@ -35,12 +35,19 @@ adsModule.controller('MainController', function ($scope, $location, mainData) {
     };
 
     updateData();
-    mainData.getAllTowns(function (resp) {
-        $scope.allTowns = resp;
-    });
-    mainData.getAllCategories(function (resp) {
-        $scope.allCategories = resp;
-    });
+    updateTowns();
+    updateCategories();
+    function updateTowns() {
+        mainData.getAllTowns(function (resp) {
+            $scope.allTowns = resp;
+        });
+    }
+
+    function updateCategories() {
+        mainData.getAllCategories(function (resp) {
+            $scope.allCategories = resp;
+        });
+    }
 
     function updateData(){
         mainData.getAllAds(function (resp) {
@@ -64,5 +71,6 @@ adsModule.controller('MainController', function ($scope, $location, mainData) {
         updateData();
     }
 
-
+    $scope.$on('updateTowns', updateTowns);
+    $scope.$on('updateCategories', updateCategories);
 });
